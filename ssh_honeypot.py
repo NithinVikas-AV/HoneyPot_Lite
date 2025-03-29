@@ -1,4 +1,4 @@
-#Libraries
+# Libraries
 
 import logging
 from logging.handlers import RotatingFileHandler
@@ -6,14 +6,14 @@ import paramiko
 import socket
 import threading
 
-#Constants
+# Constants
 
 logging_format = logging.Formatter('%(message)s')
 SSH_BANNER = "SSH-2.0-MySSHServer_1.0"
 #host_key = 'server.key'
 host_key = paramiko.RSAKey(filename='server.key')
 
-#Loggers & Logging Files
+# Loggers & Logging Files
 
 funnel_logger = logging.getLogger('FunnelLogger')
 funnel_logger.setLevel(logging.INFO)
@@ -27,7 +27,7 @@ creds_handler = RotatingFileHandler('cmd_audits.log', maxBytes = 2000, backupCou
 creds_handler.setFormatter(logging_format)
 creds_logger.addHandler(creds_handler)
 
-#Emulated Shell
+# Emulated Shell
 
 def emulated_shell(channel, client_ip):
     channel.send(b'corporate-jumpbox2$ ')
@@ -46,21 +46,26 @@ def emulated_shell(channel, client_ip):
                 channel.close()
             elif command.strip() == b'pwd':
                 response = b'\n' b'\\user\\local' + b"\r\n"
+                creds_logger.info(f'Command {command.strip()}' + 'executed by ' + f'{client_ip}')
             elif command.strip() == b'whoami':
                 response = b'\n' + b"corpuser1" + b"\r\n"
+                creds_logger.info(f'Command {command.strip()}' + 'executed by ' + f'{client_ip}')
             elif command.strip() == b'ls':
                 response = b'\n' + b"jumpbox1.conf" + b"\r\n"
+                creds_logger.info(f'Command {command.strip()}' + 'executed by ' + f'{client_ip}')
             elif command.strip() == b'cat jumpbox1.conf':
                 response = b'\n' + b"Go to deeboodah.com" + b"\r\n"
+                creds_logger.info(f'Command {command.strip()}' + 'executed by ' + f'{client_ip}')
             else:
                 response = b'\n' + bytes(command.strip()) + b"\r\n"
+                creds_logger.info(f'Command {command.strip()}' + 'executed by ' + f'{client_ip}')
             channel.send(response)
             channel.send(b'corporate-jumpbox2$ ')
             command = b""
 
 
 
-#SSH Server + Sockets
+# SSH Server + Sockets
 
 class Server(paramiko.ServerInterface):
 
@@ -78,6 +83,8 @@ class Server(paramiko.ServerInterface):
         return "password"
     
     def check_auth_password(self, username, password):
+        funnel_logger.info(f'Client {self.client_ip} attempted connection with ' + f' username: {username}, ' + f'password: {password}')
+        creds_logger.info(f'{self.client_ip}, {username}, {password}')
         if self.input_username is not None and self.input_password is not None:
             if username == self.input_username and password == self.input_password:
                 return paramiko.AUTH_SUCCESSFUL
@@ -131,7 +138,7 @@ def client_handle(client, addr, username, password):
             print("!!! Error !!!")
         client.close()
 
-#Provision SSH -Based Honeypot
+# Provision SSH -Based Honeypot
 
 def honeypot(address, port, username, password):
     socks = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -149,5 +156,3 @@ def honeypot(address, port, username, password):
         except Exception as error:
             print(error)
             print("!!! Error !!!")
-
-honeypot("127.0.0.1", 2223, "username", "password")

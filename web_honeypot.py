@@ -30,8 +30,8 @@ def web_honeypot(input_username = "admin", input_password = "password"):
     @app.route('/wp-admin-login', methods=['POST'])
 
     def login():
-        username = request.form['username']
-        password = request.form['password']
+        username = request.form.get('username','')
+        password = request.form.get('password','')
 
         ip_address = request.remote_addr
 
@@ -46,8 +46,4 @@ def web_honeypot(input_username = "admin", input_password = "password"):
 
 def run_web_honeypot(port = 5000, input_username = "admin", input_password = "admin"):
     run_web_honeypot_app = web_honeypot(input_username, input_password)
-    run_web_honeypot_app.run(debug = True, port = port, host = "0.0.0.0")
-
-    return run_web_honeypot_app
-
-run_web_honeypot()
+    run_web_honeypot_app.run(debug = False, port = port, host = "0.0.0.0")

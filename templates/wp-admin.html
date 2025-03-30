@@ -16,15 +16,15 @@
             margin: 0;
         }
         .container {
-    width: 350px; /* Reduced width for a more compact look */
-    background: rgba(0, 255, 0, 0.1); /* Translucent green tint */
-    backdrop-filter: blur(10px);
-    border-radius: 10px;
-    padding: 20px; /* Slightly reduced padding */
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
-    transition: all 0.3s ease-in-out;
-    text-align: center;
-}
+        width: 350px; /* Reduced width for a more compact look */
+        background: rgba(0, 255, 0, 0.1); /* Translucent green tint */
+        backdrop-filter: blur(10px);
+        border-radius: 10px;
+        padding: 20px; /* Slightly reduced padding */
+        box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+        transition: all 0.3s ease-in-out;
+        text-align: center;
+    }
 
         canvas {
             position: fixed;
@@ -114,6 +114,28 @@
             box-sizing: border-box; /* Ensures consistent sizing */
             text-align: center; /* Align text inside */
         }
+        .flash-message {
+            padding: 15px;
+            font-size: 18px;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 8px;
+            margin: 20px;
+        }
+
+        .flash-message.success {
+            color: black;
+            background: #00ff00;
+            box-shadow: 0 0 10px #00ff00;
+        }
+
+        .flash-message.error {
+            color: white;
+            background: #ff0000;
+            box-shadow: 0 0 10px #ff0000;
+        }
+
+
 
     </style>
 </head>
@@ -152,7 +174,7 @@
 
 <body>
 
-    <div class="container">
+    <div class="container" id="login-container">
         <h1 class="admin-title">Admin Login</h1>
         <form action="/wp-admin-login" method="post">
             <div class="form-group">
@@ -166,6 +188,29 @@
             <input type="submit" value="Login">
         </form>
     </div>
+    
+    <!-- Flash Message Container -->
+    <div class="container" id="message-container" style="display: none;">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message {{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const messages = document.querySelectorAll(".flash-message");
+            if (messages.length > 0) {
+                document.getElementById("login-container").style.display = "none";
+                document.getElementById("message-container").style.display = "block";
+            }
+        });
+    </script>
 
 </body>
 

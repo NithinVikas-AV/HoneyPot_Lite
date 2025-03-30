@@ -5,10 +5,22 @@ from logging.handlers import RotatingFileHandler
 import paramiko
 import socket
 import threading
+from datetime import datetime
+import pytz
 
-# Constants
+# Set the timezone to Kolkata
 
-logging_format = logging.Formatter('%(message)s')
+kolkata_tz = pytz.timezone("Asia/Kolkata")
+
+# Custom Formatter with Kolkata Time
+class KolkataFormatter(logging.Formatter):
+    def formatTime(self, record, datefmt=None):
+        dt = datetime.fromtimestamp(record.created, kolkata_tz)
+        return dt.strftime(datefmt if datefmt else "%d-%m-%Y %H:%M:%S")
+
+# Logging format and Constants
+
+logging_format = KolkataFormatter('%(asctime)s - %(levelname)s - %(message)s', datefmt='%d-%m-%Y %H:%M:%S')
 SSH_BANNER = "SSH-2.0-MySSHServer_1.0"
 #host_key = 'server.key'
 host_key = paramiko.RSAKey(filename='server.key')
@@ -66,7 +78,6 @@ def emulated_shell(channel, client_ip):
 
 
 # SSH Server + Sockets
-
 class Server(paramiko.ServerInterface):
 
     def __init__(self, client_ip, input_username=None, input_password=None):

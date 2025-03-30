@@ -13,7 +13,6 @@ if __name__ == "__main__":
     parser.add_argument('-p', '--port', type=int, required=True)
     parser.add_argument('-u', '--username', type = str)
     parser.add_argument('-pw', '--password', type = str)
-
     parser.add_argument('-s', '--ssh', action="store_true")
     parser.add_argument('-w', '--http', action="store_true")
 
@@ -22,12 +21,14 @@ if __name__ == "__main__":
     try:
         if args.ssh:
             print("[-] Running SSH Honeypot...")
-            honeypot(args.address, args.port, args.username, args.password)
-        
+            
             if not args.username:
                 username = None
             if not args.password:
                 password = None
+
+            honeypot(args.address, args.port, args.username, args.password)
+
         elif args.http:
             print("[-] Running HTTP WordPress Honeypot...")
 

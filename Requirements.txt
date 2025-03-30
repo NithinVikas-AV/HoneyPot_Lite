@@ -1,0 +1,17 @@
+To install paramiko --> pip install paramiko
+
+To install pytz --> pip install pytz
+
+SSH RSA key generation --> ssh-keygen -t rsa -b 2048 -f server.key
+
+To install argparse --> pip install --upgrade pip 
+			pip install argparse
+
+To installs Python 3 and all essential components required for full functionality --> sudo apt update
+										      sudo apt install python3-full
+
+To install Flask --> pip install Flask
+
+To install logginf --> pip install logging
+
+Remove Old Key --> ssh-keygen -f "/home/<user-name>/.ssh/known_hosts" -R "[127.0.0.1]:2223"

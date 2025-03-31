@@ -5,6 +5,12 @@
 **1) Clone repository.**
 `https://github.com/NithinVikas-AV/HoneyPot_Lite.git`
 
+**2) Keygen.**
+
+An RSA key must be generated for the SSH server host key. The SSH host key provides proper identification for the SSH server. Ensure the key is titled `server.key` and resides in the same relative directory to the main program.
+
+`ssh-keygen -t rsa -b 2048 -f server.key`
+
 ### 🛠️ Environment
 
  <p> Windows 11 (Use Windows 10 in Virtual Box for Security)</p>

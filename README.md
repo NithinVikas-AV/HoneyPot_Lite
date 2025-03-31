@@ -3,7 +3,7 @@
 ### Install
 
 **1) Clone repository.**
-`https://github.com/NithinVikas-AV/HoneyPot_Lite.git`
+`git clone https://github.com/NithinVikas-AV/HoneyPot_Lite.git`
 
 **2) Keygen.**
 

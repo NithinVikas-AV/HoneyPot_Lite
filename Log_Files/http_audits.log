@@ -1,0 +1,4 @@
+31-03-2025 12:00:44 - INFO - Login attempt with username=a, password=a
+31-03-2025 12:00:44 - WARNING - Potential attack: username=a, password=a
+31-03-2025 12:00:52 - INFO - Login attempt with username=a, password=b
+31-03-2025 12:00:52 - INFO - Failed login attempt: username=a, password=b

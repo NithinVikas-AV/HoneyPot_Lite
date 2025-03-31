@@ -1,0 +1,7 @@
+31-03-2025 11:59:53 - INFO - 127.0.0.1, a, a
+31-03-2025 11:59:56 - INFO - Command b'pwd'executed by 127.0.0.1
+31-03-2025 11:59:56 - INFO - Command b'ls'executed by 127.0.0.1
+31-03-2025 12:00:03 - INFO - Command b'wha\x7foam\x7f\x7f\x7f\x7f===\x7f\x7f\x7f\x7f\x7f\x7f\x7f'executed by 127.0.0.1
+31-03-2025 12:00:08 - INFO - Command b'whami'executed by 127.0.0.1
+31-03-2025 12:00:12 - INFO - Command b'\x1b[A\x1b[Bwhoami'executed by 127.0.0.1
+31-03-2025 12:00:18 - INFO - Command b'wxir\x7f\x7f\x7f\x7f'executed by 127.0.0.1

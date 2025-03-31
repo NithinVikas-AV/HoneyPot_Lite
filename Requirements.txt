@@ -9,6 +9,12 @@ logging
 
 COMMAND TO INSTALL:
 
+To install virtual environment --> python3 -m venv venv
+To activate virtual environment --> source venv/bin/activate
+To deactivate virtual environment --> deactivate
+
+Once you downloaded and activated virtual environment then install all the dependencies.
+
 To install paramiko --> pip install paramiko
 
 To install pytz --> pip install pytz

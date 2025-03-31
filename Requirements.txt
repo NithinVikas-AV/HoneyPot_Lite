@@ -1,3 +1,14 @@
+Library needed:
+
+paramiko
+pytz
+argparse
+flask
+logging
+
+
+COMMAND TO INSTALL:
+
 To install paramiko --> pip install paramiko
 
 To install pytz --> pip install pytz
@@ -12,6 +23,11 @@ To installs Python 3 and all essential components required for full functionalit
 
 To install Flask --> pip install Flask
 
-To install logginf --> pip install logging
+To install logging --> pip install logging
 
 Remove Old Key --> ssh-keygen -f "/home/<user-name>/.ssh/known_hosts" -R "[127.0.0.1]:2223"
+
+
+Sometimes these command may not work in virtual environment so sometimes u need to break the packages to install it forcefully by adding --break-system-packages to every command.
+
+If not refer AI tools for better understanding.

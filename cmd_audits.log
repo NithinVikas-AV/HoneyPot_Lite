@@ -1,0 +1,7 @@
+01-04-2025 22:20:28 - INFO - 103.114.211.111, vivin,
+02-04-2025 12:37:12 - INFO - 27.60.175.171, admin, admin
+02-04-2025 12:37:24 - INFO - Command b'pwd'executed by 27.60.175.171
+02-04-2025 12:37:27 - INFO - Command b'ls'executed by 27.60.175.171
+02-04-2025 12:37:46 - INFO - Command b'whoami'executed by 27.60.175.171
+02-04-2025 12:38:00 - INFO - Command b'kfhsdkjfhjsdkf'executed by 27.60.175.171
+02-04-2025 12:38:12 - INFO - Command b'cat jumpbox1.conf'executed by 27.60.175.171
